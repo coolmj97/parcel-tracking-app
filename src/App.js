@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import axios from 'axios';
 import Form from './components/Form';
 import Tracking from './components/Tracking';
@@ -6,10 +6,10 @@ import './App.css';
 
 class App extends Component {
   state = {
-    isTracking: true,
+    isTracking: false,
     companies: [],
-    companiesCode: '04',
-    invoiceNumber: '385546333951',
+    trackingDetails: [],
+    itemName: '',
   };
 
   getCompany = async () => {
@@ -25,16 +25,22 @@ class App extends Component {
   };
 
   getTrackingInfo = async (userCode, userInvoice) => {
-    this.setState({
-      companiesCode: userCode,
-      invoiceNumber: userInvoice,
-    });
-    const code = this.state.companiesCode;
-    const invoice = this.state.invoiceNumber;
-    const info = await axios.get(
-      `https://info.sweettracker.co.kr/api/v1/trackingInfo?t_key=JJPRq0fbDt8liHM5HWw3IA&t_code=${code}&t_invoice=${invoice}`
+    const {
+      data: { msg, status, itemName, trackingDetails },
+    } = await axios.get(
+      `https://info.sweettracker.co.kr/api/v1/trackingInfo?t_key=JJPRq0fbDt8liHM5HWw3IA&t_code=${userCode}&t_invoice=${userInvoice}`
     );
-    console.log(info);
+
+    if (status === false) {
+      alert(msg);
+      return;
+    }
+
+    this.setState({
+      isTracking: true,
+      trackingDetails,
+      itemName,
+    });
   };
 
   componentDidMount() {
@@ -42,15 +48,26 @@ class App extends Component {
   }
 
   render() {
+    const { isTracking } = this.state;
     return (
-      <div>
-        <h1>택배 배송 조회</h1>
-        <Form
-          companies={this.state.companies}
-          onSumbit={this.getTrackingInfo}
-        />
-        <Tracking />
-      </div>
+      <section className="tracker">
+        <div className="container">
+          <h1 className="tracker__title">배송 조회</h1>
+          <Form
+            companies={this.state.companies}
+            onSubmit={this.getTrackingInfo}
+          />
+
+          {isTracking ? (
+            <Fragment>
+              <span className="tracker__item__name">{this.state.itemName}</span>
+              <Tracking details={this.state.trackingDetails} />
+            </Fragment>
+          ) : (
+            <Fragment></Fragment>
+          )}
+        </div>
+      </section>
     );
   }
 }

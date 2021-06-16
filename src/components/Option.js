@@ -1,8 +1,12 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 
 class Option extends Component {
   render() {
-    return <div></div>;
+    return (
+      <Fragment>
+        <option value={this.props.id}>{this.props.name}</option>
+      </Fragment>
+    );
   }
 }
 

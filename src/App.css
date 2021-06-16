@@ -1,38 +1,45 @@
-.App {
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Spoqa Han Sans Neo', 'sans-serif';
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #d9dbf1;
+  color: white;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.tracker {
+  height: 100vh;
+  margin: 0 auto;
+  background-color: #8e9dcc;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+.container {
+  padding: 40px 0;
+  background-color: #8e9dcc;
+}
+
+.tracker__title {
+  margin-bottom: 20px;
+  font-weight: 400;
+}
+
+.tracker__item__name {
+  font-size: 16px;
+}
+
+@media screen and (min-width: 768px) {
+  .tracker__title {
+    margin-bottom: 40px;
   }
-}
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
+  .tracker__item__name {
+    font-size: 18px;
   }
 }

@@ -1,9 +1,27 @@
-import React, { Component } from 'react';
+import React, { Component, createRef, Fragment } from 'react';
+import Option from './Option';
+import './Form.css';
 
 class Form extends Component {
   state = {
-    userCode: '',
+    userCode: '04',
     userInvoice: '',
+  };
+
+  selectRef = createRef();
+  inputRef = createRef();
+
+  onSubmit = (e) => {
+    const select = this.selectRef.current;
+    const input = this.inputRef.current;
+
+    e.preventDefault();
+    if (select.value && input.value === '') {
+      alert('올바르게 입력하세요.');
+      return;
+    }
+    const { userCode, userInvoice } = this.state;
+    this.props.onSubmit(userCode, userInvoice);
   };
 
   handleChange = (e) => {
@@ -12,36 +30,48 @@ class Form extends Component {
     });
   };
 
+  handleSelect = (e) => {
+    const userCode = e.target.value;
+    this.setState({
+      userCode,
+    });
+  };
+
   render() {
     const { companies } = this.props;
 
     return (
-      <div onClick={console.log('클릭')}>
-        <form
-          onSubmit={(e) => {
-            e.preventDefault();
-            this.props.onSubmit(this.state.userCode, this.state.userInvoice);
-          }}
-        >
-          <select>
+      <Fragment>
+        <form className="user__form" onSubmit={this.onSubmit}>
+          <select
+            className="user__company"
+            onChange={this.handleSelect}
+            ref={this.selectRef}
+          >
             {companies.map((company) => (
-              <option key={company.Code} id={company.Code}>
-                {company.Name}
-              </option>
+              <Option
+                key={company.Code}
+                id={company.Code}
+                name={company.Name}
+              />
             ))}
           </select>
 
           <input
+            className="user__invoice"
             name="userInvoice"
-            type="text"
+            type="number"
             placeholder="운송장번호"
             value={this.state.userInvoice}
             onChange={this.handleChange}
+            ref={this.inputRef}
           />
 
-          <button type="submit">조회</button>
+          <button className="button__submit" type="submit">
+            <i className="fas fa-search"></i>
+          </button>
         </form>
-      </div>
+      </Fragment>
     );
   }
 }

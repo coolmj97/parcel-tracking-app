@@ -1,0 +1,29 @@
+td {
+  padding: 8px;
+  border-right: 1px solid;
+  border-bottom: 1px solid;
+  font-size: 15px;
+}
+
+td:hover {
+  background-color: #7d84b2;
+}
+
+.tracking__time {
+  width: 33%;
+}
+
+.tracking__position {
+  width: 33%;
+}
+
+.tracking__state {
+  width: 33%;
+  border-right: none;
+}
+
+@media screen and (min-width: 768px) {
+  td {
+    font-size: initial;
+  }
+}
