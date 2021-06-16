@@ -1,25 +1,15 @@
-import React, { Component, createRef, Fragment } from 'react';
+import React, { Component, Fragment } from 'react';
 import Option from './Option';
 import './Form.css';
 
 class Form extends Component {
   state = {
-    userCode: '04',
+    userCode: '',
     userInvoice: '',
   };
 
-  selectRef = createRef();
-  inputRef = createRef();
-
   onSubmit = (e) => {
-    const select = this.selectRef.current;
-    const input = this.inputRef.current;
-
     e.preventDefault();
-    if (select.value && input.value === '') {
-      alert('올바르게 입력하세요.');
-      return;
-    }
     const { userCode, userInvoice } = this.state;
     this.props.onSubmit(userCode, userInvoice);
   };
@@ -44,10 +34,11 @@ class Form extends Component {
       <Fragment>
         <form className="user__form" onSubmit={this.onSubmit}>
           <select
+            name="companies"
             className="user__company"
             onChange={this.handleSelect}
-            ref={this.selectRef}
           >
+            <option value="">택배사 선택</option>
             {companies.map((company) => (
               <Option
                 key={company.Code}
@@ -58,16 +49,19 @@ class Form extends Component {
           </select>
 
           <input
-            className="user__invoice"
             name="userInvoice"
             type="number"
             placeholder="운송장번호"
             value={this.state.userInvoice}
+            className="user__invoice"
             onChange={this.handleChange}
-            ref={this.inputRef}
           />
 
-          <button className="button__submit" type="submit">
+          <button
+            className="button__submit"
+            type="submit"
+            aria-label="배송조회하기"
+          >
             <i className="fas fa-search"></i>
           </button>
         </form>
