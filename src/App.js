@@ -12,11 +12,13 @@ class App extends Component {
     itemName: '',
   };
 
+  key = '6cZakepFWRyHctZn3HJYiw';
+
   getCompany = async () => {
     const {
       data: { Company },
     } = await axios.get(
-      'https://info.sweettracker.co.kr/api/v1/companylist?t_key=JJPRq0fbDt8liHM5HWw3IA'
+      `https://info.sweettracker.co.kr/api/v1/companylist?t_key=${this.key}`
     );
 
     this.setState({
@@ -28,7 +30,7 @@ class App extends Component {
     const {
       data: { msg, status, itemName, trackingDetails },
     } = await axios.get(
-      `https://info.sweettracker.co.kr/api/v1/trackingInfo?t_key=JJPRq0fbDt8liHM5HWw3IA&t_code=${userCode}&t_invoice=${userInvoice}`
+      `https://info.sweettracker.co.kr/api/v1/trackingInfo?t_key=${this.key}&t_code=${userCode}&t_invoice=${userInvoice}`
     );
 
     if (status === false) {
