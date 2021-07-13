@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/parcel-tracking-app/static/css/main.da34be45.chunk.css",
-    "main.js": "/parcel-tracking-app/static/js/main.15d6c115.chunk.js",
-    "main.js.map": "/parcel-tracking-app/static/js/main.15d6c115.chunk.js.map",
+    "main.js": "/parcel-tracking-app/static/js/main.d617e02a.chunk.js",
+    "main.js.map": "/parcel-tracking-app/static/js/main.d617e02a.chunk.js.map",
     "runtime-main.js": "/parcel-tracking-app/static/js/runtime-main.ed0db89c.js",
     "runtime-main.js.map": "/parcel-tracking-app/static/js/runtime-main.ed0db89c.js.map",
     "static/js/2.3ea4cf82.chunk.js": "/parcel-tracking-app/static/js/2.3ea4cf82.chunk.js",
@@ -15,6 +15,6 @@
     "static/js/runtime-main.ed0db89c.js",
     "static/js/2.3ea4cf82.chunk.js",
     "static/css/main.da34be45.chunk.css",
-    "static/js/main.15d6c115.chunk.js"
+    "static/js/main.d617e02a.chunk.js"
   ]
 }
