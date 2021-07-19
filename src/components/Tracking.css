@@ -3,9 +3,12 @@ th {
   border-bottom: 1px solid;
 }
 
+tbody {
+  height: 100vh;
+}
+
 .tracking__table {
   width: 100%;
-  height: 100vh;
   padding: 0 8px;
   margin: 20px auto;
 }
